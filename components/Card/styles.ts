@@ -14,6 +14,7 @@ export const CardContainer = styled.div`
 export const CardTitle = styled.span`
   font-size: ${({ theme }) => theme.fontSizes.small};
   font-weight: bold;
+  font-family: ${({ theme }) => theme.fonts.primary};
 `;
 
 export const CardHeader = styled.div`
