@@ -3,6 +3,9 @@ export const theme = {
     primary: '#0070f3',
     secondary: '#f3f3f3',
   },
+  backgroundColors: {
+    primary: '#f3f3f3',
+  },
   fonts: {
     primary: '"Roboto", sans-serif',
   },

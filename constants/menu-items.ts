@@ -24,6 +24,11 @@ const MENU_OPTIONS: MenuOption[] = [
     url: '/',
   },
   {
+    name: 'Process',
+    icon: Business,
+    url: '/process',
+  },
+  {
     name: 'Orders',
     icon: ShoppingCart,
     url: '/orders',
