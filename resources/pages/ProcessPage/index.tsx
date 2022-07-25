@@ -1,13 +1,16 @@
-import { ArrowUpward } from '@styled-icons/material';
+import { ArrowUpward, Add } from '@styled-icons/material';
 import { NextPage } from 'next';
 import Badge from '../../../components/Badge';
+import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import * as Styled from './styles';
+
 const ProcessPage: NextPage = () => {
   return (
     <Styled.Container>
       <Styled.Header>
         <Styled.Title>Process</Styled.Title>
+        <Button color='#FFF' label='New process' icon={<Add />} />
       </Styled.Header>
       <Styled.CardContainer>
         <Card title='Total process'>
