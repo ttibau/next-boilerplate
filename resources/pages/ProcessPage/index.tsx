@@ -1,8 +1,10 @@
+import { AlertDialogTrigger } from '@radix-ui/react-alert-dialog';
 import { ArrowUpward, Add } from '@styled-icons/material';
 import { NextPage } from 'next';
 import Badge from '../../../components/Badge';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
+import Dialog from '../../../components/Dialog';
 import * as Styled from './styles';
 
 const ProcessPage: NextPage = () => {
@@ -10,7 +12,15 @@ const ProcessPage: NextPage = () => {
     <Styled.Container>
       <Styled.Header>
         <Styled.Title>Process</Styled.Title>
-        <Button color='#FFF' label='New process' icon={<Add />} />
+        <Dialog
+          title='Add Process'
+          triggerLabel='Add Process'
+          triggerIcon={<Add />}
+          actionLabel='Add'
+          content={<span>asdfasd</span>}
+          cancel={() => {}}
+          cancelLabel='Cancel'
+        />
       </Styled.Header>
       <Styled.CardContainer>
         <Card title='Total process'>

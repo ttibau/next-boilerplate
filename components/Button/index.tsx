@@ -4,6 +4,7 @@ interface IButtonProps {
   icon?: JSX.Element;
   label?: string;
   color?: string;
+  onClick?: () => void;
 }
 
 const Button = ({ icon, label, color }: IButtonProps) => {
