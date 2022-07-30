@@ -2,9 +2,9 @@ import { AlertDialogTrigger } from '@radix-ui/react-alert-dialog';
 import { ArrowUpward, Add } from '@styled-icons/material';
 import { NextPage } from 'next';
 import Badge from '../../../components/Badge';
-import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import Dialog from '../../../components/Dialog';
+import ProcessTable from '../../../components/Tables/Process';
 import * as Styled from './styles';
 
 const ProcessPage: NextPage = () => {
@@ -62,6 +62,7 @@ const ProcessPage: NextPage = () => {
           </Styled.CardContent>
         </Card>
       </Styled.CardContainer>
+      <Styled.PageContent></Styled.PageContent>
     </Styled.Container>
   );
 };

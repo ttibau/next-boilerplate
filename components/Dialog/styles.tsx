@@ -71,9 +71,26 @@ function Content({ children, ...props }: IContent) {
 }
 
 export const StyledDialogTrigger = styled(AlertDialogPrimitive.Trigger)`
-  padding: 0;
-  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.white};
   border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  height: 40px;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.secondary};
+    color: ${({ theme }) => theme.colors.primary};
+  }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const DialogCancel = styled(AlertDialogPrimitive.Cancel)`
@@ -108,6 +125,10 @@ export const ActionContainer = styled.div`
 export const DialogContent = styled.div`
   padding: 10px;
 `;
+
+export const Icon = styled.div``;
+
+export const Label = styled.span``;
 
 export const AlertDialog = AlertDialogPrimitive.Root;
 export const AlertDialogTrigger = StyledDialogTrigger;

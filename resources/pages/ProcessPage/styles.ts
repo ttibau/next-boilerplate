@@ -41,3 +41,7 @@ export const Title = styled.div`
   font-weight: bold;
   margin-bottom: 3rem;
 `;
+
+export const PageContent = styled.div`
+  margin-top: 30px;
+`;

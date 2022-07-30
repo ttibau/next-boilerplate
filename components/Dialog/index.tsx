@@ -26,7 +26,8 @@ const Dialog = ({
   return (
     <Styled.AlertDialog>
       <Styled.AlertDialogTrigger>
-        <Button color='#FFF' label={triggerLabel} icon={triggerIcon} />
+        {triggerIcon && <Styled.Icon>{triggerIcon}</Styled.Icon>}
+        <Styled.Label>{triggerLabel}</Styled.Label>
       </Styled.AlertDialogTrigger>
       <Styled.AlertDialogContent>
         <Styled.AlertDialogTitle>{title}</Styled.AlertDialogTitle>
