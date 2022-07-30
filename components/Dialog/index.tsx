@@ -30,15 +30,15 @@ const Dialog = ({
       </Styled.AlertDialogTrigger>
       <Styled.AlertDialogContent>
         <Styled.AlertDialogTitle>{title}</Styled.AlertDialogTitle>
-        {content}
-        {action ? (
-          <Styled.AlertDialogAction>
-            <Button label={actionLabel} onClick={action} />
-          </Styled.AlertDialogAction>
-        ) : null}
-        {cancel ? (
-          <Styled.AlertDialogCancel>{cancelLabel}</Styled.AlertDialogCancel>
-        ) : null}
+        <Styled.DialogContent>{content}</Styled.DialogContent>
+        <Styled.ActionContainer>
+          {cancel ? (
+            <Styled.AlertDialogCancel>{cancelLabel}</Styled.AlertDialogCancel>
+          ) : null}
+          {action ? (
+            <Styled.AlertDialogAction>{actionLabel}</Styled.AlertDialogAction>
+          ) : null}
+        </Styled.ActionContainer>
       </Styled.AlertDialogContent>
     </Styled.AlertDialog>
   );

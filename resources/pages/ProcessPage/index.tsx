@@ -17,9 +17,20 @@ const ProcessPage: NextPage = () => {
           triggerLabel='Add Process'
           triggerIcon={<Add />}
           actionLabel='Add'
-          content={<span>asdfasd</span>}
+          content={
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Vestibulum eu volutpat sem, id viverra elit. Duis eget suscipit
+              lorem. Fusce efficitur, lacus quis pulvinar aliquam, nisl risus
+              blandit risus, at pellentesque mi augue eu dui. Nulla maximus
+              fermentum elit nec semper. Donec at commodo arcu. Praesent tempus
+              ultricies leo, a lobortis enim malesuada sed. In nibh ligula,
+              ullamcorper a nunc lobortis, facilisis sagittis velit.
+            </span>
+          }
           cancel={() => {}}
           cancelLabel='Cancel'
+          action={() => {}}
         />
       </Styled.Header>
       <Styled.CardContainer>

@@ -14,13 +14,15 @@ const contentShow = keyframes({
 export const StyledOverlay = styled(AlertDialogPrimitive.Overlay)`
   background-color: #8f8f8f;
   position: fixed;
-  inset: 0fixed;
+  inset: 0 fixed;
   @media (prefers-reduced-motion: no-preference) {
     animation: ${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 `;
 
 export const StyledContent = styled(AlertDialogPrimitive.Content)`
+  display: flex;
+  flex-direction: column;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
@@ -74,10 +76,43 @@ export const StyledDialogTrigger = styled(AlertDialogPrimitive.Trigger)`
   border: none;
 `;
 
+export const DialogCancel = styled(AlertDialogPrimitive.Cancel)`
+  width: 6rem;
+  height: 35px;
+  border-radius: 5px;
+  background-color: #eeedef;
+  color: rgb(111, 110, 119);
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  margin-right: 1rem;
+`;
+
+export const DialogAction = styled(AlertDialogPrimitive.Action)`
+  background-color: rgb(221, 243, 228);
+  color: rgb(24, 121, 78);
+  font-weight: bold;
+  cursor: pointer;
+  width: 6rem;
+  height: 35px;
+  border-radius: 4px;
+  border: none;
+`;
+
+export const ActionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
+
+export const DialogContent = styled.div`
+  padding: 10px;
+`;
+
 export const AlertDialog = AlertDialogPrimitive.Root;
 export const AlertDialogTrigger = StyledDialogTrigger;
 export const AlertDialogContent = Content;
 export const AlertDialogTitle = StyledTitle;
 export const AlertDialogDescription = StyledDescription;
-export const AlertDialogAction = AlertDialogPrimitive.Action;
-export const AlertDialogCancel = AlertDialogPrimitive.Cancel;
+export const AlertDialogAction = DialogAction;
+export const AlertDialogCancel = DialogCancel;
