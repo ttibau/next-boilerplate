@@ -10,7 +10,7 @@ type DashboardLayoutProps = {
 };
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const [isOpened, setOpened] = useState(true);
+  const [isOpened, setOpened] = useState(false);
 
   const toggleDrawer = () => {
     setOpened((prev) => !prev);

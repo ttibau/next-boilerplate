@@ -13,6 +13,7 @@
     "@radix-ui/react-popover": "1.0.0",
     "@radix-ui/react-slot": "^1.0.0",
     "@styled-icons/material": "^10.34.0",
+    "@tanstack/react-table": "^8.5.2",
     "babel-plugin-styled-components": "^2.0.7",
     "next": "12.2.3",
     "react": "18.2.0",
