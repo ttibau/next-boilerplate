@@ -9,6 +9,7 @@ export const CardContainer = styled.div`
   width: 25rem;
   align-items: flex-start;
   padding: 1rem;
+  margin: auto 10px;
 
   @media (max-width: 768px) {
     width: 60%;

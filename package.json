@@ -13,6 +13,7 @@
     "@radix-ui/react-popover": "1.0.0",
     "@radix-ui/react-slot": "^1.0.0",
     "@styled-icons/material": "^10.34.0",
+    "@tanstack/match-sorter-utils": "^8.1.1",
     "@tanstack/react-table": "^8.5.2",
     "axios": "^0.27.2",
     "babel-plugin-styled-components": "^2.0.7",

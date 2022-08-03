@@ -62,7 +62,9 @@ const ProcessPage: NextPage = () => {
           </Styled.CardContent>
         </Card>
       </Styled.CardContainer>
-      <Styled.PageContent></Styled.PageContent>
+      <Styled.PageContent>
+        <ProcessTable />
+      </Styled.PageContent>
     </Styled.Container>
   );
 };

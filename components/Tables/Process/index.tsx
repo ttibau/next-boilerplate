@@ -1,43 +1,137 @@
 import {
-  ColumnDef,
   createColumnHelper,
+  FilterFn,
+  flexRender,
+  getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 import axios from 'axios';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { Process } from '../../../types/entities/Process';
+import { DebouncedInput } from '../../DebouncedInput';
+import { rankItem } from '@tanstack/match-sorter-utils';
 import * as Styled from './styles';
 
 const ProcessTable = () => {
-  const [process, setProcess] = useState([]);
-
-  const fetchProcess = async () => {
-    const response = await axios
-      .get('https://fakestoreapi.com/products')
-      .catch((error) => console.log(error));
-
-    if (response) {
-      console.log(response.data);
-      setProcess(response.data);
-    }
-  };
+  const [process, setProcess] = useState<Process[]>([]);
+  const [globalFilter, setGlobalFilter] = useState('');
 
   useEffect(() => {
-    fetchProcess();
+    setProcess([
+      {
+        id: 1,
+        name: 'Process 1',
+        macroProcess: { id: 1, name: 'Macro Process 1' },
+        target:
+          'Vender o máximo possível de mercadorias, no prazo e a contento do cliente',
+      },
+      {
+        id: 2,
+        name: 'Folha de pagamento',
+        macroProcess: { id: 1, name: 'Macro Process 1' },
+        target:
+          'Vender o máximo possível de mercadorias, no prazo e a contento do cliente',
+      },
+    ]);
   }, []);
 
-  type Process = {
-    id: number;
-    name: string;
-    description: string;
+  // talvez melhor jogar isso num utils
+  const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+    console.log('bati');
+    const itemRank = rankItem(row.getValue(columnId), value);
+    addMeta({
+      itemRank,
+    });
+    return itemRank.passed;
   };
 
   const columnHelper = createColumnHelper<Process>();
 
-  const defaultColumns: ColumnDef<Process>[] = [columnHelper.gro];
+  const columns = [
+    columnHelper.accessor('id', {
+      header: 'ID',
+    }),
+    columnHelper.accessor('name', {
+      header: 'Name',
+    }),
+    columnHelper.accessor('macroProcess', {
+      header: 'Macro Process',
+      cell: (info) => info.row.original.macroProcess.name,
+    }),
+  ];
 
-  const tableInstance = useReactTable({ columns, data });
+  const table = useReactTable<Process>({
+    columns,
+    data: process,
+    filterFns: {
+      fuzzy: fuzzyFilter,
+    },
+    getCoreRowModel: getCoreRowModel(),
+    state: {
+      globalFilter,
+    },
+    onGlobalFilterChange: setGlobalFilter,
+    globalFilterFn: fuzzyFilter,
+    enableGlobalFilter: true,
+  });
 
-  return <div>table</div>;
+  return (
+    <>
+      <DebouncedInput
+        value={globalFilter ?? ''}
+        onChange={(value) => {
+          console.log(value);
+          setGlobalFilter(String(value));
+        }}
+        placeholder='Search all columns...'
+      />
+      <table>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          {table.getFooterGroups().map((footerGroup) => (
+            <tr key={footerGroup.id}>
+              {footerGroup.headers.map((header) => (
+                <th key={header.id}>
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.footer,
+                        header.getContext()
+                      )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </tfoot>
+      </table>
+    </>
+  );
 };
 
 export default ProcessTable;
