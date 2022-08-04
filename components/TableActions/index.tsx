@@ -2,6 +2,7 @@ import { Row } from '@tanstack/react-table';
 import * as Styled from './styles';
 
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
+import TooltipComponent from '../Tooltip';
 
 interface TableActionsProps {
   row: Row<any>;
@@ -13,8 +14,18 @@ const TableActions = ({ row }: TableActionsProps) => {
   console.log(row);
   return (
     <Styled.Container>
-      <Styled.Icon icon={faPenToSquare} />
-      <Styled.Icon icon={faTrashAlt} />
+      <TooltipComponent
+        variant='primary'
+        trigger={<Styled.Icon icon={faPenToSquare} />}
+      >
+        <span>Editar</span>
+      </TooltipComponent>
+      <TooltipComponent
+        variant='danger'
+        trigger={<Styled.Icon icon={faTrashAlt} />}
+      >
+        <span>Deletar</span>
+      </TooltipComponent>
     </Styled.Container>
   );
 };

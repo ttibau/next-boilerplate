@@ -41,7 +41,7 @@ export const TableRow = styled.tr<TableRowProps>`
   }
 
   :hover {
-    background-color: ${(props) => props.theme.colors.lightGreen};
+    background-color: ${(props) => props.theme.colors.lightPrimary};
   }
 `;
 

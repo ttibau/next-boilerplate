@@ -7,6 +7,7 @@ export const theme = {
     gray: '#e6e6e6',
     lightGreen: '#ECFDF3',
     lightGray: '#f3f3f3',
+    lightPrimary: '#eff6ff',
   },
   backgroundColors: {
     primary: '#f3f3f3',
