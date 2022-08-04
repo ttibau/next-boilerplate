@@ -11,6 +11,7 @@ import { Process } from '../../../types/entities/Process';
 import { DebouncedInput } from '../../DebouncedInput';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import * as Styled from './styles';
+import TableActions from '../../TableActions';
 
 const ProcessTable = () => {
   const [process, setProcess] = useState<Process[]>([]);
@@ -31,6 +32,13 @@ const ProcessTable = () => {
         macroProcess: { id: 1, name: 'Macro Process 1' },
         target:
           'Vender o máximo possível de mercadorias, no prazo e a contento do cliente',
+      },
+      {
+        id: 3,
+        name: 'Folha de pagam12ento',
+        macroProcess: { id: 1, name: 'Macro P2rocess 1' },
+        target:
+          'Vender o máximo possíve2l de mercadorias, no prazo e a contento do cliente',
       },
     ]);
   }, []);
@@ -58,6 +66,10 @@ const ProcessTable = () => {
       header: 'Macro Process',
       cell: (info) => info.row.original.macroProcess.name,
     }),
+    columnHelper.display({
+      id: 'actions',
+      cell: (props) => <TableActions row={props.row} />,
+    }),
   ];
 
   const table = useReactTable<Process>({
@@ -76,7 +88,7 @@ const ProcessTable = () => {
   });
 
   return (
-    <>
+    <Styled.Container>
       <DebouncedInput
         value={globalFilter ?? ''}
         onChange={(value) => {
@@ -85,52 +97,36 @@ const ProcessTable = () => {
         }}
         placeholder='Search all columns...'
       />
-      <table>
-        <thead>
+      <Styled.Table>
+        <Styled.TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => (
-                <th key={header.id}>
+                <Styled.TableHeader key={header.id}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
                         header.column.columnDef.header,
                         header.getContext()
                       )}
-                </th>
+                </Styled.TableHeader>
               ))}
             </tr>
           ))}
-        </thead>
+        </Styled.TableHead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
+            <Styled.TableRow key={row.id}>
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
+                <Styled.TableData key={cell.id}>
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
+                </Styled.TableData>
               ))}
-            </tr>
+            </Styled.TableRow>
           ))}
         </tbody>
-        <tfoot>
-          {table.getFooterGroups().map((footerGroup) => (
-            <tr key={footerGroup.id}>
-              {footerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.footer,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </tfoot>
-      </table>
-    </>
+      </Styled.Table>
+    </Styled.Container>
   );
 };
 
