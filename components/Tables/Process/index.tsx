@@ -1,17 +1,24 @@
 import {
+  ColumnDef,
   createColumnHelper,
   FilterFn,
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getFilteredRowModel,
 } from '@tanstack/react-table';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Process } from '../../../types/entities/Process';
 import { DebouncedInput } from '../../DebouncedInput';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import * as Styled from './styles';
 import TableActions from '../../TableActions';
+
+declare module '@tanstack/table-core' {
+  interface FilterFns {
+    fuzzy: FilterFn<unknown>;
+  }
+}
 
 const ProcessTable = () => {
   const [process, setProcess] = useState<Process[]>([]);
@@ -24,7 +31,7 @@ const ProcessTable = () => {
         name: 'Process 1',
         macroProcess: { id: 1, name: 'Macro Process 1' },
         target:
-          'Vender o máximo possível de mercadorias, no prazo e a contento do cliente',
+          'Vender o máximo possível de mercadorias generalizadas, no prazo e a contento do cliente',
       },
       {
         id: 2,
@@ -45,7 +52,6 @@ const ProcessTable = () => {
 
   // talvez melhor jogar isso num utils
   const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-    console.log('bati');
     const itemRank = rankItem(row.getValue(columnId), value);
     addMeta({
       itemRank,
@@ -53,24 +59,36 @@ const ProcessTable = () => {
     return itemRank.passed;
   };
 
-  const columnHelper = createColumnHelper<Process>();
-
-  const columns = [
-    columnHelper.accessor('id', {
-      header: 'ID',
-    }),
-    columnHelper.accessor('name', {
-      header: 'Name',
-    }),
-    columnHelper.accessor('macroProcess', {
-      header: 'Macro Process',
-      cell: (info) => info.row.original.macroProcess.name,
-    }),
-    columnHelper.display({
-      id: 'actions',
-      cell: (props) => <TableActions row={props.row} />,
-    }),
-  ];
+  const columns = useMemo<ColumnDef<Process, any>[]>(
+    () => [
+      {
+        accessorKey: 'id',
+        header: 'ID',
+        cell: (info) => info.getValue(),
+      },
+      {
+        accessorKey: 'name',
+        header: 'Nome',
+        cell: (info) => info.getValue(),
+      },
+      {
+        accessorKey: 'macroProcess',
+        header: 'Macro Processo',
+        cell: (info) => info.getValue().name,
+      },
+      {
+        accessorKey: 'target',
+        header: 'Target',
+        cell: (info) => info.getValue(),
+      },
+      {
+        accessorKey: 'actions',
+        header: 'Ações',
+        cell: (info) => <TableActions row={info.row} />,
+      },
+    ],
+    []
+  );
 
   const table = useReactTable<Process>({
     columns,
@@ -79,6 +97,7 @@ const ProcessTable = () => {
       fuzzy: fuzzyFilter,
     },
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     state: {
       globalFilter,
     },

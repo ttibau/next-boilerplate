@@ -11,7 +11,6 @@ interface TableActionsProps {
 }
 
 const TableActions = ({ row }: TableActionsProps) => {
-  console.log(row);
   return (
     <Styled.Container>
       <TooltipComponent
