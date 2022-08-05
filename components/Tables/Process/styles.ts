@@ -2,11 +2,13 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Table = styled.table`
   border-collapse: collapse;
-  margin: 25px 0;
+  margin: 5px 0;
   font-size: 0.9em;
   min-width: 400px;
   border-radius: 5px 5px 0 0;
@@ -53,4 +55,11 @@ export const TableBody = styled.tbody``;
 
 export const TableData = styled.td`
   padding: 12px 15px;
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-self: flex-end;
+  width: 20%;
 `;

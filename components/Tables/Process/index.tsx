@@ -89,14 +89,16 @@ const ProcessTable = () => {
 
   return (
     <Styled.Container>
-      <DebouncedInput
-        value={globalFilter ?? ''}
-        onChange={(value) => {
-          console.log(value);
-          setGlobalFilter(String(value));
-        }}
-        placeholder='Search all columns...'
-      />
+      <Styled.InputContainer>
+        <DebouncedInput
+          value={globalFilter ?? ''}
+          onChange={(value) => {
+            console.log(value);
+            setGlobalFilter(String(value));
+          }}
+          placeholder='Pesquisar'
+        />
+      </Styled.InputContainer>
       <Styled.Table>
         <Styled.TableHead>
           {table.getHeaderGroups().map((headerGroup) => (
