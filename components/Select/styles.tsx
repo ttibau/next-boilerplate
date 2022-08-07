@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const StyledTrigger = styled(SelectPrimitive.SelectTrigger)`
   all: unset;
@@ -17,7 +18,7 @@ const StyledTrigger = styled(SelectPrimitive.SelectTrigger)`
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.background.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   &:focus {
@@ -27,7 +28,7 @@ const StyledTrigger = styled(SelectPrimitive.SelectTrigger)`
 `;
 
 const StyledIcon = styled(SelectPrimitive.SelectIcon)`
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 const StyledContent = styled(SelectPrimitive.Content)`
@@ -58,7 +59,7 @@ const StyledItem = styled(SelectPrimitive.Item)`
   all: unset;
   font-size: 13px;
   line-height: 1;
-  color: ${({ theme }) => theme.colors.text.primary};
+  color: ${({ theme }) => theme.colors.primary};
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -73,8 +74,8 @@ const StyledItem = styled(SelectPrimitive.Item)`
   }
 
   &[data-highlighted] {
-    background-color: ${({ theme }) => theme.colors.background.primary};
-    color: ${({ theme }) => theme.colors.text.primary};
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 
@@ -118,6 +119,14 @@ const StyledScrollDownButton = styled(SelectPrimitive.ScrollDownButton)`
   background-color: #fff;
   color: ${({ theme }) => theme.colors.primary};
   cursor: default;
+`;
+
+export const Icon = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  padding: 5px;
+  :hover {
+    color: ${(props) => props.theme.colors.primary};
+  }
 `;
 
 export const Select = SelectPrimitive.Root;
