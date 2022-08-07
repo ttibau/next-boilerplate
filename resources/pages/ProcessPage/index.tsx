@@ -5,6 +5,7 @@ import Badge from '../../../components/Badge';
 import Button from '../../../components/Button';
 import Card from '../../../components/Card';
 import Dialog from '../../../components/Dialog';
+import ProcessForm from '../../../components/Forms/Process';
 import ProcessTable from '../../../components/Tables/Process';
 import * as Styled from './styles';
 
@@ -17,17 +18,7 @@ const ProcessPage: NextPage = () => {
           title='Add Process'
           trigger={<Button icon={<Add />} label='New Process' />}
           actionLabel='Add'
-          content={
-            <span>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum eu volutpat sem, id viverra elit. Duis eget suscipit
-              lorem. Fusce efficitur, lacus quis pulvinar aliquam, nisl risus
-              blandit risus, at pellentesque mi augue eu dui. Nulla maximus
-              fermentum elit nec semper. Donec at commodo arcu. Praesent tempus
-              ultricies leo, a lobortis enim malesuada sed. In nibh ligula,
-              ullamcorper a nunc lobortis, facilisis sagittis velit.
-            </span>
-          }
+          content={<ProcessForm />}
           cancel={() => {}}
           cancelLabel='Cancel'
           action={() => {}}

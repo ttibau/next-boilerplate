@@ -8,6 +8,9 @@ export const theme = {
     lightGreen: '#ECFDF3',
     lightGray: '#f3f3f3',
     lightPrimary: '#eff6ff',
+    text: {
+      disabled: '#c8c8c8',
+    },
   },
   backgroundColors: {
     primary: '#f3f3f3',
