@@ -7,7 +7,7 @@ interface IButtonProps {
   onClick?: () => void;
 }
 
-const Button = ({ icon, label, color }: IButtonProps) => {
+const DialogButton = ({ icon, label, color }: IButtonProps) => {
   return (
     <Styled.Button color={color}>
       {icon ? <Styled.Icon>{icon}</Styled.Icon> : null}
@@ -16,4 +16,4 @@ const Button = ({ icon, label, color }: IButtonProps) => {
   );
 };
 
-export default Button;
+export default DialogButton;

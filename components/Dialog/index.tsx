@@ -1,5 +1,3 @@
-import { Add } from '@styled-icons/material';
-import Button from '../Button';
 import * as Styled from './styles';
 
 interface IDialogProps {
