@@ -9,8 +9,7 @@ interface IDialogProps {
   actionLabel?: string;
   cancelLabel?: string;
   cancel?: () => void;
-  triggerLabel: string;
-  triggerIcon?: JSX.Element;
+  trigger: JSX.Element;
 }
 
 const Dialog = ({
@@ -18,17 +17,13 @@ const Dialog = ({
   action,
   cancel,
   title,
-  triggerLabel,
-  triggerIcon,
   actionLabel,
   cancelLabel,
+  trigger,
 }: IDialogProps) => {
   return (
     <Styled.AlertDialog>
-      <Styled.AlertDialogTrigger>
-        {triggerIcon && <Styled.Icon>{triggerIcon}</Styled.Icon>}
-        <Styled.Label>{triggerLabel}</Styled.Label>
-      </Styled.AlertDialogTrigger>
+      <Styled.AlertDialogTrigger>{trigger}</Styled.AlertDialogTrigger>
       <Styled.AlertDialogContent>
         <Styled.AlertDialogTitle>{title}</Styled.AlertDialogTitle>
         <Styled.DialogContent>{content}</Styled.DialogContent>

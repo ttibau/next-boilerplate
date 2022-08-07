@@ -10,7 +10,7 @@ export const Button = styled.button<ButtonProps>`
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ color }) => color};
+  color: ${({ theme }) => theme.colors.white};
   border: none;
   border-radius: 4px;
   padding: 8px 16px;

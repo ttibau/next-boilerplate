@@ -84,7 +84,7 @@ const ProcessTable = () => {
       {
         accessorKey: 'actions',
         header: 'Ações',
-        cell: (info) => <TableActions row={info.row} />,
+        cell: (info) => <TableActions editAction deleteAction row={info.row} />,
       },
     ],
     []

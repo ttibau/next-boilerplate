@@ -71,26 +71,9 @@ function Content({ children, ...props }: IContent) {
 }
 
 export const StyledDialogTrigger = styled(AlertDialogPrimitive.Trigger)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
+  user-select: none;
+  background-color: transparent;
   border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  height: 40px;
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.secondary};
-    color: ${({ theme }) => theme.colors.primary};
-  }
-  &:focus {
-    outline: none;
-  }
 `;
 
 export const DialogCancel = styled(AlertDialogPrimitive.Cancel)`
