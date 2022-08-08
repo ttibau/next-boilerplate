@@ -1,6 +1,4 @@
 import { Control, Controller } from 'react-hook-form';
-import Select from 'react-select';
-import { Process } from '../../types/entities/Process';
 import * as Styled from './styles';
 
 interface SelectProps {
@@ -8,15 +6,13 @@ interface SelectProps {
     value: string;
     label: string;
   }>;
-  label: string;
   name: any;
-  control: Control<Process, any>;
+  control: Control<any, any>;
 }
 
-const SelectComponent = ({ options, label, name, control }: SelectProps) => {
+const SelectComponent = ({ options, name, control }: SelectProps) => {
   return (
     <>
-      <label htmlFor={label}>{label}</label>
       <Controller
         name={name}
         control={control}
