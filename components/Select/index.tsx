@@ -1,47 +1,51 @@
+import { Control, Controller } from 'react-hook-form';
+import Select from 'react-select';
+import { Process } from '../../types/entities/Process';
 import * as Styled from './styles';
-import {
-  faChevronDown,
-  faChevronUp,
-  faCheck,
-} from '@fortawesome/free-solid-svg-icons';
-const Select = () => {
+
+interface SelectProps {
+  options: Array<{
+    value: string;
+    label: string;
+  }>;
+  label: string;
+  name: any;
+  control: Control<Process, any>;
+}
+
+const SelectComponent = ({ options, label, name, control }: SelectProps) => {
   return (
     <>
-      <Styled.Select>
-        <Styled.SelectTrigger>
-          <Styled.SelectValue placeholder='Select a process' />
-          <Styled.SelectIcon>
-            <Styled.Icon icon={faChevronDown} />
-          </Styled.SelectIcon>
-        </Styled.SelectTrigger>
-        <Styled.SelectContent>
-          <Styled.SelectScrollUpButton>
-            <Styled.Icon icon={faChevronUp} />
-          </Styled.SelectScrollUpButton>
-          <Styled.SelectViewport>
-            <Styled.SelectGroup>
-              <Styled.SelectLabel>Teste</Styled.SelectLabel>
-              <Styled.SelectItem value='apple'>
-                <Styled.SelectItemText>Apple</Styled.SelectItemText>
-                <Styled.SelectItemIndicator>
-                  <Styled.Icon icon={faCheck} />
-                </Styled.SelectItemIndicator>
-              </Styled.SelectItem>
-              <Styled.SelectItem value='banana'>
-                <Styled.SelectItemText>Banana</Styled.SelectItemText>
-                <Styled.SelectItemIndicator>
-                  <Styled.Icon icon={faCheck} />
-                </Styled.SelectItemIndicator>
-              </Styled.SelectItem>
-            </Styled.SelectGroup>
-          </Styled.SelectViewport>
-          <Styled.SelectScrollDownButton>
-            <Styled.Icon icon={faChevronDown} />
-          </Styled.SelectScrollDownButton>
-        </Styled.SelectContent>
-      </Styled.Select>
+      <label htmlFor={label}>{label}</label>
+      <Controller
+        name={name}
+        control={control}
+        render={({ field: { onChange, onBlur } }) => {
+          return (
+            <Styled.SelectComponent
+              options={options}
+              placeholder={'Choose...'}
+              onChange={onChange}
+              onBlur={onBlur}
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  border: '1px solid #e6e6e6',
+                  borderRadius: 5,
+                  outline: 'none',
+                  boxShadow: '0 0 20px rgba(0, 0, 0, 0.15)',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:focus': {
+                    borderColor: '#0070f3',
+                  },
+                }),
+              }}
+            />
+          );
+        }}
+      />
     </>
   );
 };
 
-export default Select;
+export default SelectComponent;
