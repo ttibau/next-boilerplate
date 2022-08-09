@@ -10,7 +10,7 @@ type DashboardLayoutProps = {
 };
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-  const [isOpened, setOpened] = useState(false);
+  const [isOpened, setOpened] = useState(true);
 
   const toggleDrawer = () => {
     setOpened((prev) => !prev);
@@ -18,7 +18,6 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
   return (
     <Styled.Container>
-      <Header isOpened={isOpened} toggleDrawer={toggleDrawer} />
       <Styled.Content>
         <Sidebar isOpened={isOpened} />
         <Styled.PageContainer>{children}</Styled.PageContainer>
