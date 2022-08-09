@@ -16,6 +16,14 @@ export const CardContainer = styled.div`
     width: 60%;
     margin: 10px auto;
   }
+
+  :first-child {
+    margin: auto;
+  }
+
+  :last-child {
+    margin-right: auto;
+  }
 `;
 
 export const CardTitle = styled.span`
