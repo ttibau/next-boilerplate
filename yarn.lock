@@ -369,6 +369,14 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@naisutech/react-tree@^2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@naisutech/react-tree/-/react-tree-2.1.0.tgz#024a95af7afc11b096b6b6e04a159dd9fc324a75"
+  integrity sha512-e9qUE5xOjDNZgnt5eC2TI+RatL3FwjxlM/dyEaJHherWbsnnAN51j7KFS6dQ7dKt6onaKH+tPmv0svQTno1QSQ==
+  dependencies:
+    "@emotion/is-prop-valid" "^1.1.0"
+    nanoid "^3.1.23"
+
 "@next/env@12.2.3":
   version "12.2.3"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-12.2.3.tgz#64f210e74c137d3d9feea738795b055a7f8aebe2"
@@ -2154,7 +2162,7 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==
 
-nanoid@^3.3.4:
+nanoid@^3.1.23, nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
