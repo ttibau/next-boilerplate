@@ -9,76 +9,43 @@ import {
   HomeWork,
   Person,
 } from '@styled-icons/material';
+import {
+  faChalkboardUser,
+  faUsers,
+  faDiagramProject,
+} from '@fortawesome/free-solid-svg-icons';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 type MenuOption = {
   name: string;
-  icon: React.ComponentType;
+  icon: IconProp;
   url: string;
   subItems?: MenuOption[];
 };
 
 const MENU_OPTIONS: MenuOption[] = [
   {
-    name: 'Dashboard',
-    icon: Dashboard,
-    url: '/',
-  },
-  {
-    name: 'Process',
-    icon: Business,
+    name: 'Processos',
+    icon: faChalkboardUser,
     url: '/process',
   },
   {
-    name: 'Orders',
-    icon: ShoppingCart,
-    url: '/orders',
+    name: 'Organograma',
+    icon: faDiagramProject,
+    url: '/organization-chart',
     subItems: [
       {
-        name: 'New',
-        icon: AddShoppingCart,
-        url: '/new-orders',
-      },
-      {
-        name: 'Completed',
-        icon: Done,
-        url: '/completed-orders',
+        name: 'Funcionários',
+        icon: faUsers,
+        url: '/organization-chart/employees',
       },
     ],
-  },
-  {
-    name: 'Customers',
-    icon: People,
-    url: '/customers',
-    subItems: [
-      {
-        name: 'Corporate',
-        icon: Business,
-        url: '/corporate',
-      },
-      {
-        name: 'SMB',
-        icon: HomeWork,
-        url: '/smb',
-        subItems: [
-          {
-            name: 'Retail',
-            icon: Person,
-            url: '/retail',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    name: 'Inventory',
-    icon: AttachMoney,
-    url: '/inventory',
   },
 ];
 
 export type MenuItem = {
   name: string;
-  icon: React.ComponentType;
+  icon: IconProp;
   url: string;
   id: string;
   depth: number;
