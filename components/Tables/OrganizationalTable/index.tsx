@@ -4,11 +4,8 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
-  getFilteredRowModel,
 } from '@tanstack/react-table';
-import { useEffect, useMemo, useState } from 'react';
-import { DebouncedInput } from '../../DebouncedInput';
-import { rankItem } from '@tanstack/match-sorter-utils';
+import { useMemo } from 'react';
 import * as Styled from './styles';
 import TableActions from '../../TableActions';
 import { fuzzyFilter } from '../../../resources/helpers/fuzzyFilter';
@@ -21,10 +18,8 @@ declare module '@tanstack/table-core' {
 }
 
 const OrganizationalTable = () => {
-  const [organizational, setOrganizational] = useState<IOrganizational[]>([]);
-
-  useEffect(() => {
-    setOrganizational([
+  const organizationalColumns: IOrganizational[] = useMemo(
+    () => [
       {
         id: '1',
         label: 'Presidência',
@@ -50,9 +45,9 @@ const OrganizationalTable = () => {
         label: 'Direção de tecnologia',
         parentId: null,
       },
-    ]);
-  }, []);
-
+    ],
+    []
+  );
   // talvez melhor jogar isso num utils
 
   const columns = useMemo<ColumnDef<IOrganizational, any>[]>(
@@ -70,10 +65,14 @@ const OrganizationalTable = () => {
       {
         accessorKey: 'parentId',
         header: 'Parent',
-        cell: (info) =>
-          organizational
-            .filter((organization) => organization.id === info.getValue())
-            .map((organization) => organization.label)[0],
+        cell: (info) => {
+          const parent = organizationalColumns.find(
+            (o) => o.id === info.getValue()
+          );
+          console.log(parent);
+          console.log(organizationalColumns);
+          return parent ? parent.label : '-';
+        },
       },
       {
         accessorKey: 'actions',
@@ -86,7 +85,7 @@ const OrganizationalTable = () => {
 
   const table = useReactTable<IOrganizational>({
     columns,
-    data: organizational,
+    data: organizationalColumns,
     filterFns: {
       fuzzy: fuzzyFilter,
     },

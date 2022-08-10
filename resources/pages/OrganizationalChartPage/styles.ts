@@ -2,11 +2,18 @@ import styled from 'styled-components';
 
 export const Container = styled.div``;
 
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+`;
+
 export const Title = styled.div`
   font-family: ${({ theme }) => theme.fonts.primary};
   font-size: ${({ theme }) => theme.fontSizes.large};
   font-weight: bold;
-  margin-bottom: 3rem;
 `;
 
 export const ChartContainer = styled.div`

@@ -1,6 +1,10 @@
 import * as Styled from './styles';
 import Tree, { ReactTreeTheme } from '@naisutech/react-tree';
 import OrganizationalTable from '../../../components/Tables/OrganizationalTable';
+import Dialog from '../../../components/Dialog';
+import DialogButton from '../../../components/DialogButton';
+import { Add } from '@styled-icons/material/Add';
+import OrganizationalForm from '../../../components/Forms/Organizational';
 
 const OrganizationalChartPage = () => {
   const data = [
@@ -48,7 +52,18 @@ const OrganizationalChartPage = () => {
 
   return (
     <Styled.Container>
-      <Styled.Title>Organizational Chart</Styled.Title>
+      <Styled.Header>
+        <Styled.Title>Organizational Chart</Styled.Title>
+        <Dialog
+          title='Add Organizational'
+          trigger={<DialogButton icon={<Add />} label='New Organizational' />}
+          actionLabel='Add'
+          content={<OrganizationalForm />}
+          cancel={() => {}}
+          cancelLabel='Cancel'
+          action={() => {}}
+        />
+      </Styled.Header>
       <Styled.ChartContainer>
         <Styled.TreeContainer>
           <Tree
