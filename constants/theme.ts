@@ -9,6 +9,7 @@ export const theme = {
     lightGray: '#f3f3f3',
     background: '#FFFFFF',
     lightPrimary: '#eff6ff',
+    error: '#e74c3c',
     text: {
       disabled: '#c8c8c8',
     },

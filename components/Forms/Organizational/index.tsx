@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { IOrganizational } from '../../../types/entities/Organizational';
+import FormError from '../../FormError';
 import { Input } from '../../Input/styles';
 import Select from '../../Select';
 import { TextArea } from '../../Textarea';
@@ -32,11 +33,11 @@ const OrganizationalForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Styled.FormLabel htmlFor='name'>Name:</Styled.FormLabel>
       <Input {...register('label', { required: true })} />
-      {errors.label && <span>This field is required</span>}
+      {errors.label && <FormError error='This field is required' />}
       <Styled.Spacer />
       <Styled.FormLabel htmlFor='parent'>Parent:</Styled.FormLabel>
       <Select options={parentList} control={control as any} name='parent' />
-      {errors.parentId && <span>This field is required</span>}
+      {errors.parentId && <FormError error='This field is required' />}
       <Styled.Spacer />
     </form>
   );
