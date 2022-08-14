@@ -34,7 +34,7 @@ export const StyledContent = styled(AlertDialogPrimitive.Content)`
   width: 90vw;
   max-width: 500px;
   max-height: 90vh;
-  padding: 25px;
+  padding: 25px 25px 10px 25px;
   @media (prefers-reduced-motion: no-preference) {
     animation: ${contentShow} 150ms cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -120,3 +120,29 @@ export const AlertDialogTitle = StyledTitle;
 export const AlertDialogDescription = StyledDescription;
 export const AlertDialogAction = DialogAction;
 export const AlertDialogCancel = DialogCancel;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const CloseBtn = styled.div`
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff;
+  color: rgb(111, 110, 119);
+  font-weight: bold;
+  border: none;
+  margin-right: 1rem;
+
+  &:hover {
+    background-color: #eeedef;
+    color: #6f6e77;
+  }
+`;

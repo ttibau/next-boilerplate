@@ -1,38 +1,22 @@
+import { useContext } from 'react';
+import { DialogContext } from '../context/DialogContext';
 import * as Styled from './styles';
+import { Close } from '@styled-icons/material';
 
-interface IDialogProps {
-  content: React.ReactNode;
-  title?: string;
-  action?: () => void;
-  actionLabel?: string;
-  cancelLabel?: string;
-  cancel?: () => void;
-  trigger: JSX.Element;
-}
-
-const Dialog = ({
-  content,
-  action,
-  cancel,
-  title,
-  actionLabel,
-  cancelLabel,
-  trigger,
-}: IDialogProps) => {
+const Dialog = () => {
+  const { open, dialog, closeDialog } = useContext(DialogContext);
   return (
-    <Styled.AlertDialog>
-      <Styled.AlertDialogTrigger>{trigger}</Styled.AlertDialogTrigger>
+    <Styled.AlertDialog open={open}>
       <Styled.AlertDialogContent>
-        <Styled.AlertDialogTitle>{title}</Styled.AlertDialogTitle>
-        <Styled.DialogContent>{content}</Styled.DialogContent>
-        <Styled.ActionContainer>
-          {cancel ? (
-            <Styled.AlertDialogCancel>{cancelLabel}</Styled.AlertDialogCancel>
-          ) : null}
-          {action ? (
-            <Styled.AlertDialogAction>{actionLabel}</Styled.AlertDialogAction>
-          ) : null}
-        </Styled.ActionContainer>
+        <Styled.Header>
+          <Styled.AlertDialogTitle>
+            {dialog && dialog.title}
+          </Styled.AlertDialogTitle>
+          <Styled.CloseBtn onClick={closeDialog}>
+            <Close />
+          </Styled.CloseBtn>
+        </Styled.Header>
+        <Styled.DialogContent>{dialog && dialog.content}</Styled.DialogContent>
       </Styled.AlertDialogContent>
     </Styled.AlertDialog>
   );

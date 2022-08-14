@@ -9,12 +9,3 @@ export const FormLabel = styled.label`
   margin: 15px 0 5px 0;
   display: inline-block;
 `;
-
-export const ActionButtons = styled.div`
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  flex-direction: row;
-  align-items: center;
-`;
