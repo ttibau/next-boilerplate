@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { Process } from '../../../types/entities/Process';
 import Button from '../../Button';
 import { DialogContext } from '../../context/DialogContext';
+import FormError from '../../FormError';
 import { Input } from '../../Input/styles';
 import Select from '../../Select';
 import { TextArea } from '../../Textarea';
@@ -42,21 +43,27 @@ const ProcessForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Styled.FormLabel htmlFor='name'>Name:</Styled.FormLabel>
       <Input {...register('name', { required: true })} />
-      {errors.name && <span>This field is required</span>}
+      {errors.name && <FormError error='This field is required' />}
       <Styled.Spacer />
       <Styled.FormLabel htmlFor='macroProcess'>MacroProcess:</Styled.FormLabel>
       <Select
         options={macroProcessList}
         control={control as any}
         name='macroProcess'
+        required
       />
-      {errors.macroProcess && <span>This field is required</span>}
+      {errors.macroProcess && <FormError error='This field is required' />}
       <Styled.Spacer />
       <Styled.FormLabel htmlFor='target'>Target:</Styled.FormLabel>
-      <TextArea name='target' control={control as any} rows={3} />
-      {errors.target && <span>This field is required</span>}
+      <TextArea required name='target' control={control as any} rows={3} />
+      {errors.target && <FormError error='This field is required' />}
       <Styled.ActionButtons>
-        <Button onClick={closeDialog} label='Cancel' color='secondary' />
+        <Button
+          outline
+          onClick={closeDialog}
+          label='Cancel'
+          color='secondary'
+        />
         <Button type='submit' label='Save' color='primary' />
       </Styled.ActionButtons>
     </form>

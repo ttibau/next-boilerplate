@@ -7,6 +7,7 @@ interface TextAreaProps {
   placeholder?: string;
   rows?: number;
   cols?: number;
+  required?: boolean;
 }
 
 export function TextArea({
@@ -15,10 +16,12 @@ export function TextArea({
   placeholder,
   rows,
   cols,
+  required,
 }: TextAreaProps) {
   return (
     <Controller
       name={name}
+      rules={{ required: required }}
       control={control}
       render={({ field: { onChange, onBlur } }) => {
         return (

@@ -11,7 +11,7 @@ interface IDialogProps {
 }
 
 const Dialog = ({ trigger }: IDialogProps) => {
-  const { open, title, dialog } = useContext(DialogContext);
+  const { open, dialog } = useContext(DialogContext);
   return (
     <Styled.AlertDialog open={open}>
       <Styled.AlertDialogTrigger>{trigger}</Styled.AlertDialogTrigger>
@@ -20,14 +20,6 @@ const Dialog = ({ trigger }: IDialogProps) => {
           {dialog && dialog.title}
         </Styled.AlertDialogTitle>
         <Styled.DialogContent>{dialog && dialog.content}</Styled.DialogContent>
-        {/* <Styled.ActionContainer>
-          {cancel ? (
-            <Styled.AlertDialogCancel>{cancelLabel}</Styled.AlertDialogCancel>
-          ) : null}
-          {action ? (
-            <Styled.AlertDialogAction>{actionLabel}</Styled.AlertDialogAction>
-          ) : null}
-        </Styled.ActionContainer> */}
       </Styled.AlertDialogContent>
     </Styled.AlertDialog>
   );

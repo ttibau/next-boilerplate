@@ -13,6 +13,8 @@ export const FormLabel = styled.label`
 export const ActionButtons = styled.div`
   margin-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 10px;
   flex-direction: row;
+  align-items: center;
 `;

@@ -8,14 +8,16 @@ interface SelectProps {
   }>;
   name: any;
   control: Control<any, any>;
+  required?: boolean;
 }
 
-const SelectComponent = ({ options, name, control }: SelectProps) => {
+const SelectComponent = ({ options, name, control, required }: SelectProps) => {
   return (
     <>
       <Controller
         name={name}
         control={control}
+        rules={{ required: required }}
         render={({ field: { onChange, onBlur } }) => {
           return (
             <Styled.SelectComponent
