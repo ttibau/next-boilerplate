@@ -1,8 +1,8 @@
+import { useContext } from 'react';
+import { DialogContext } from '../context/DialogContext';
 import * as Styled from './styles';
 
 interface IDialogProps {
-  content: React.ReactNode;
-  title?: string;
   action?: () => void;
   actionLabel?: string;
   cancelLabel?: string;
@@ -10,29 +10,24 @@ interface IDialogProps {
   trigger: JSX.Element;
 }
 
-const Dialog = ({
-  content,
-  action,
-  cancel,
-  title,
-  actionLabel,
-  cancelLabel,
-  trigger,
-}: IDialogProps) => {
+const Dialog = ({ trigger }: IDialogProps) => {
+  const { open, title, dialog } = useContext(DialogContext);
   return (
-    <Styled.AlertDialog>
+    <Styled.AlertDialog open={open}>
       <Styled.AlertDialogTrigger>{trigger}</Styled.AlertDialogTrigger>
       <Styled.AlertDialogContent>
-        <Styled.AlertDialogTitle>{title}</Styled.AlertDialogTitle>
-        <Styled.DialogContent>{content}</Styled.DialogContent>
-        <Styled.ActionContainer>
+        <Styled.AlertDialogTitle>
+          {dialog && dialog.title}
+        </Styled.AlertDialogTitle>
+        <Styled.DialogContent>{dialog && dialog.content}</Styled.DialogContent>
+        {/* <Styled.ActionContainer>
           {cancel ? (
             <Styled.AlertDialogCancel>{cancelLabel}</Styled.AlertDialogCancel>
           ) : null}
           {action ? (
             <Styled.AlertDialogAction>{actionLabel}</Styled.AlertDialogAction>
           ) : null}
-        </Styled.ActionContainer>
+        </Styled.ActionContainer> */}
       </Styled.AlertDialogContent>
     </Styled.AlertDialog>
   );

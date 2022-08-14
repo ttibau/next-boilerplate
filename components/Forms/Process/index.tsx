@@ -1,5 +1,8 @@
+import { useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Process } from '../../../types/entities/Process';
+import Button from '../../Button';
+import { DialogContext } from '../../context/DialogContext';
 import { Input } from '../../Input/styles';
 import Select from '../../Select';
 import { TextArea } from '../../Textarea';
@@ -33,7 +36,8 @@ const ProcessForm = () => {
     },
   ];
 
-  console.log(watch('name'));
+  const { closeDialog } = useContext(DialogContext);
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Styled.FormLabel htmlFor='name'>Name:</Styled.FormLabel>
@@ -51,6 +55,10 @@ const ProcessForm = () => {
       <Styled.FormLabel htmlFor='target'>Target:</Styled.FormLabel>
       <TextArea name='target' control={control as any} rows={3} />
       {errors.target && <span>This field is required</span>}
+      <Styled.ActionButtons>
+        <Button onClick={closeDialog} label='Cancel' color='secondary' />
+        <Button type='submit' label='Save' color='primary' />
+      </Styled.ActionButtons>
     </form>
   );
 };

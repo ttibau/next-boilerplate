@@ -5,11 +5,12 @@ interface IButtonProps {
   label?: string;
   color?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-const Button = ({ icon, label, color }: IButtonProps) => {
+const Button = ({ icon, label, color, onClick, type }: IButtonProps) => {
   return (
-    <Styled.Button color={color}>
+    <Styled.Button type={type} onClick={onClick} color={color}>
       {icon ? <Styled.Icon>{icon}</Styled.Icon> : null}
       <span>{label}</span>
     </Styled.Button>
