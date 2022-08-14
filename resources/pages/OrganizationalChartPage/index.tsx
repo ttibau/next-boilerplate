@@ -54,7 +54,7 @@ const OrganizationalChartPage = () => {
     <Styled.Container>
       <Styled.Header>
         <Styled.Title>Organizational Chart</Styled.Title>
-        <Dialog
+        {/* <Dialog
           title='Add Organizational'
           trigger={<DialogButton icon={<Add />} label='New Organizational' />}
           actionLabel='Add'
@@ -62,7 +62,7 @@ const OrganizationalChartPage = () => {
           cancel={() => {}}
           cancelLabel='Cancel'
           action={() => {}}
-        />
+        /> */}
       </Styled.Header>
       <Styled.ChartContainer>
         <Styled.TreeContainer>

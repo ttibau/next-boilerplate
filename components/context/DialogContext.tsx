@@ -7,16 +7,12 @@ interface IOpenDialog {
 
 type DialogContextProviderProps = {
   children: ReactNode;
-  content: JSX.Element;
-  title: string;
 };
 
 interface DialogContext {
   open: boolean;
   openDialog: (dialogContent: IOpenDialog) => void;
   closeDialog: () => void;
-  content: JSX.Element | null;
-  title: string | null;
   dialog: IOpenDialog | null;
 }
 
@@ -24,15 +20,11 @@ export const DialogContext = createContext<DialogContext>({
   open: false,
   openDialog: (dialogContent: IOpenDialog) => {},
   closeDialog: () => {},
-  content: <></>,
-  title: '',
   dialog: null,
 });
 
 export const DialogContextProivder = ({
   children,
-  content,
-  title,
 }: DialogContextProviderProps) => {
   const [open, setOpen] = useState(false);
   const [dialog, setDialog] = useState<IOpenDialog | null>({
@@ -55,8 +47,6 @@ export const DialogContextProivder = ({
         open,
         openDialog,
         closeDialog,
-        content,
-        title,
         dialog,
       }}
     >
