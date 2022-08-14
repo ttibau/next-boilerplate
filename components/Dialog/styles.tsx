@@ -120,3 +120,29 @@ export const AlertDialogTitle = StyledTitle;
 export const AlertDialogDescription = StyledDescription;
 export const AlertDialogAction = DialogAction;
 export const AlertDialogCancel = DialogCancel;
+
+export const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+export const CloseBtn = styled.div`
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #fff;
+  color: rgb(111, 110, 119);
+  font-weight: bold;
+  border: none;
+  margin-right: 1rem;
+
+  &:hover {
+    background-color: #eeedef;
+    color: #6f6e77;
+  }
+`;

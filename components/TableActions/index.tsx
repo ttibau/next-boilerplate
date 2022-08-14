@@ -4,6 +4,8 @@ import * as Styled from './styles';
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import TooltipComponent from '../Tooltip';
 import Dialog from '../Dialog';
+import { useContext } from 'react';
+import { DialogContext } from '../context/DialogContext';
 
 interface TableActionsProps {
   row: Row<any>;
@@ -12,29 +14,44 @@ interface TableActionsProps {
 }
 
 const TableActions = ({ row, editAction, deleteAction }: TableActionsProps) => {
+  const { openDialog } = useContext(DialogContext);
   return (
     <Styled.Container>
       {editAction && (
-        <Dialog
-          title='Delete process'
-          trigger={<Styled.Icon icon={faPenToSquare} />}
-          actionLabel='Add'
-          content={<span>Formulário de edição aqui!</span>}
-          cancel={() => {}}
-          cancelLabel='Cancel'
-          action={() => {}}
-        />
+        <TooltipComponent
+          trigger={
+            <Styled.Icon
+              onClick={() => {
+                openDialog({
+                  title: 'Edit Process',
+                  content: <>Formulário aqui</>,
+                });
+              }}
+              icon={faPenToSquare}
+            />
+          }
+          variant='primary'
+        >
+          <span>Editar</span>
+        </TooltipComponent>
       )}
       {deleteAction && (
-        <Dialog
-          title='Delete process'
-          trigger={<Styled.Icon icon={faTrashAlt} />}
-          actionLabel='Delete'
-          content={<span>Are you sure you want to delete this process?</span>}
-          cancel={() => {}}
-          cancelLabel='Cancel'
-          action={() => {}}
-        />
+        <TooltipComponent
+          trigger={
+            <Styled.Icon
+              onClick={() => {
+                openDialog({
+                  title: 'Delete Process',
+                  content: <>Tem certeza que deseja excluir este processo?</>,
+                });
+              }}
+              icon={faTrashAlt}
+            />
+          }
+          variant='danger'
+        >
+          <span>Excluir</span>
+        </TooltipComponent>
       )}
     </Styled.Container>
   );
