@@ -2,9 +2,11 @@ import * as Styled from './styles';
 import Tree, { ReactTreeTheme } from '@naisutech/react-tree';
 import OrganizationalTable from '../../../components/Tables/OrganizationalTable';
 import Dialog from '../../../components/Dialog';
-import DialogButton from '../../../components/DialogButton';
 import { Add } from '@styled-icons/material/Add';
 import OrganizationalForm from '../../../components/Forms/Organizational';
+import Button from '../../../components/Button';
+import { useContext } from 'react';
+import { DialogContext } from '../../../components/context/DialogContext';
 
 const OrganizationalChartPage = () => {
   const data = [
@@ -50,19 +52,24 @@ const OrganizationalChartPage = () => {
     textSize: 'default',
   };
 
+  const { openDialog } = useContext(DialogContext);
+
   return (
     <Styled.Container>
+      <Dialog />
       <Styled.Header>
         <Styled.Title>Organizational Chart</Styled.Title>
-        {/* <Dialog
-          title='Add Organizational'
-          trigger={<DialogButton icon={<Add />} label='New Organizational' />}
-          actionLabel='Add'
-          content={<OrganizationalForm />}
-          cancel={() => {}}
-          cancelLabel='Cancel'
-          action={() => {}}
-        /> */}
+        <Button
+          onClick={() => {
+            openDialog({
+              title: 'Create Organizational',
+              content: <OrganizationalForm />,
+            });
+          }}
+          icon={<Add />}
+          label='New Process'
+          color='primary'
+        />
       </Styled.Header>
       <Styled.ChartContainer>
         <Styled.TreeContainer>
