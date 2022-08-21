@@ -62,7 +62,13 @@ const UserTable = () => {
       {
         accessorKey: 'actions',
         header: 'Ações',
-        cell: (info) => <TableActions editAction deleteAction row={info.row} />,
+        cell: (info) => (
+          <TableActions
+            editAction={() => console.log('asdf')}
+            deleteAction={() => console.log('123')}
+            row={info.row}
+          />
+        ),
       },
     ],
     []

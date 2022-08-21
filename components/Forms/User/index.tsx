@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Process } from '../../../types/entities/Process';
+import { IUser } from '../../../types/entities/User';
 import Button from '../../Button';
 import { DialogContext } from '../../context/DialogContext';
 import FormError from '../../FormError';
@@ -15,24 +15,24 @@ const UserForm = () => {
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<Process>();
+  } = useForm<IUser>();
 
-  const onSubmit: SubmitHandler<Process> = (data) => {
+  const onSubmit: SubmitHandler<IUser> = (data) => {
     console.log(data);
   };
 
-  const macroProcessList = [
+  const companyList = [
     {
       value: '1',
-      label: 'Processo 1',
+      label: 'Cheese benchmark Account',
     },
     {
       value: '2',
-      label: 'Processo 2',
+      label: 'Avon Handcrafted Kids',
     },
     {
       value: '3',
-      label: 'Processo 3',
+      label: 'firewall backing',
     },
   ];
 
@@ -40,22 +40,28 @@ const UserForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Styled.FormLabel htmlFor='name'>Name:</Styled.FormLabel>
-      <Input {...register('name', { required: true })} />
-      {errors.name && <FormError error='This field is required' />}
+      <Styled.FormLabel htmlFor='name'>Nome:</Styled.FormLabel>
+      <Input {...register('nvarNome', { required: true })} />
+      {errors.nvarNome && <FormError error='This field is required' />}
       <Styled.Spacer />
-      <Styled.FormLabel htmlFor='macroProcess'>MacroProcess:</Styled.FormLabel>
+      <Styled.FormLabel htmlFor='name'>Usuário:</Styled.FormLabel>
+      <Input {...register('idnVarUsuario', { required: true })} />
+      {errors.idnVarUsuario && <FormError error='This field is required' />}
+      <Styled.Spacer />
+      <Styled.Spacer />
+      <Styled.FormLabel htmlFor='password'>Senha:</Styled.FormLabel>
+      <Input type='password' {...register('nvarSenha', { required: true })} />
+      {errors.nvarSenha && <FormError error='This field is required' />}
+      <Styled.FormLabel htmlFor='macroProcess'>Empresa:</Styled.FormLabel>
       <Select
-        options={macroProcessList}
+        {...register('empresa', { required: true })}
+        options={companyList}
         control={control as any}
-        name='macroProcess'
+        name='empresa'
         required
       />
-      {errors.macroProcess && <FormError error='This field is required' />}
-      <Styled.Spacer />
-      <Styled.FormLabel htmlFor='target'>Target:</Styled.FormLabel>
-      <TextArea required name='target' control={control as any} rows={3} />
-      {errors.target && <FormError error='This field is required' />}
+      {errors.empresa && <FormError error='This field is required' />}
+
       <Styled.ActionButtons>
         <Button
           outline

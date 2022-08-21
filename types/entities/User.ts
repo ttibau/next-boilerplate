@@ -6,4 +6,5 @@ export interface IUser {
   idnVarUsuario: string;
   idnVarEmpresa: string;
   nvarNome: string;
+  nvarSenha?: string;
 }

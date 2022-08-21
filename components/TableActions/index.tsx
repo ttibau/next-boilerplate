@@ -9,8 +9,8 @@ import { DialogContext } from '../context/DialogContext';
 
 interface TableActionsProps {
   row: Row<any>;
-  editAction?: boolean;
-  deleteAction?: boolean;
+  editAction?: () => void;
+  deleteAction?: () => void;
 }
 
 const TableActions = ({ row, editAction, deleteAction }: TableActionsProps) => {

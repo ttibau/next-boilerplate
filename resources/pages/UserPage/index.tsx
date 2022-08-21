@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import Button from '../../../components/Button';
 import { DialogContext } from '../../../components/context/DialogContext';
 import Dialog from '../../../components/Dialog';
-import ProcessForm from '../../../components/Forms/Process';
+import UserForm from '../../../components/Forms/User';
 import UserTable from '../../../components/Tables/User';
 import * as Styled from './styles';
 
@@ -18,8 +18,8 @@ const UserPage: NextPage = () => {
         <Button
           onClick={() => {
             openDialog({
-              title: 'Create Process',
-              content: <ProcessForm />,
+              title: 'Create New User',
+              content: <UserForm />,
             });
           }}
           icon={<Add />}
