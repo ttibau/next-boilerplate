@@ -10,7 +10,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <ThemeProvider theme={theme}>
       <DashboardLayout>
