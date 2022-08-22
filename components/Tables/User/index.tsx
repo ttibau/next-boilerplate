@@ -15,6 +15,7 @@ import { IUser } from '../../../types/entities/User';
 import { useFetchAllUsers } from '../../../resources/pages/UserPage/api/useFetchAllUsers';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { useDeleteUser } from '../../../resources/pages/UserPage/api/useDeleteUser';
 
 declare module '@tanstack/table-core' {
   interface FilterFns {
@@ -26,7 +27,7 @@ const UserTable = () => {
   const [globalFilter, setGlobalFilter] = useState('');
 
   const { isLoading, error, data } = useFetchAllUsers();
-  console.log(data);
+  const deleteUserMutation = useDeleteUser();
 
   // talvez melhor jogar isso num utils
   const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
@@ -64,8 +65,8 @@ const UserTable = () => {
         header: 'Ações',
         cell: (info) => (
           <TableActions
-            editAction={() => console.log('asdf')}
-            deleteAction={() => console.log('123')}
+            editAction={() => console.log(info.row)}
+            deleteAction={() => deleteUserMutation.mutate(info.row.original.id)}
             row={info.row}
           />
         ),
@@ -92,48 +93,53 @@ const UserTable = () => {
 
   return (
     <Styled.Container>
-      <Styled.InputContainer>
-        <DebouncedInput
-          value={globalFilter ?? ''}
-          onChange={(value) => {
-            console.log(value);
-            setGlobalFilter(String(value));
-          }}
-          placeholder='Pesquisar'
-        />
-      </Styled.InputContainer>
       {isLoading && <Skeleton width={600} count={5} />}
-      <Styled.Table>
-        <Styled.TableHead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <Styled.TableHeader key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </Styled.TableHeader>
+      {!isLoading && (
+        <>
+          <Styled.InputContainer>
+            <DebouncedInput
+              value={globalFilter ?? ''}
+              onChange={(value) => {
+                console.log(value);
+                setGlobalFilter(String(value));
+              }}
+              placeholder='Pesquisar'
+            />
+          </Styled.InputContainer>
+          <Styled.Table>
+            <Styled.TableHead>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <Styled.TableHeader key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </Styled.TableHeader>
+                  ))}
+                </tr>
               ))}
-            </tr>
-          ))}
-        </Styled.TableHead>
-        {!isLoading && (
-          <tbody>
-            {table.getRowModel().rows.map((row) => (
-              <Styled.TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <Styled.TableData key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </Styled.TableData>
-                ))}
-              </Styled.TableRow>
-            ))}
-          </tbody>
-        )}
-      </Styled.Table>
+            </Styled.TableHead>
+            <tbody>
+              {table.getRowModel().rows.map((row) => (
+                <Styled.TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <Styled.TableData key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </Styled.TableData>
+                  ))}
+                </Styled.TableRow>
+              ))}
+            </tbody>
+          </Styled.Table>
+        </>
+      )}
     </Styled.Container>
   );
 };

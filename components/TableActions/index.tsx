@@ -6,12 +6,35 @@ import TooltipComponent from '../Tooltip';
 import Dialog from '../Dialog';
 import { useContext } from 'react';
 import { DialogContext } from '../context/DialogContext';
+import Button from '../Button';
 
 interface TableActionsProps {
   row: Row<any>;
   editAction?: () => void;
   deleteAction?: () => void;
 }
+
+interface ActionProps {
+  action: () => void;
+}
+
+const DeleteContent = ({ action }: ActionProps) => {
+  const { closeDialog } = useContext(DialogContext);
+  return (
+    <>
+      <p>Deseja realmente excluir este registro?</p>
+      <Styled.ButtonsContainer>
+        <Button
+          outline
+          onClick={closeDialog}
+          label='Cancel'
+          color='secondary'
+        />
+        <Button onClick={action} type='submit' label='Save' color='primary' />
+      </Styled.ButtonsContainer>
+    </>
+  );
+};
 
 const TableActions = ({ row, editAction, deleteAction }: TableActionsProps) => {
   const { openDialog } = useContext(DialogContext);
@@ -42,7 +65,7 @@ const TableActions = ({ row, editAction, deleteAction }: TableActionsProps) => {
               onClick={() => {
                 openDialog({
                   title: 'Delete Process',
-                  content: <>Tem certeza que deseja excluir este processo?</>,
+                  content: <DeleteContent action={deleteAction} />,
                 });
               }}
               icon={faTrashAlt}

@@ -4,7 +4,7 @@ import { CustomError } from '../../../../types/general/CustomError';
 import { http } from '../../../../api/http';
 
 const fetchAllUsers = async (): Promise<any> => {
-  const { data } = await http.get('http://localhost:8080/api/usuarios');
+  const { data } = await http.get('/usuarios');
   return data;
 };
 

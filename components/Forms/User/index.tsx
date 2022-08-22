@@ -6,7 +6,6 @@ import { DialogContext } from '../../context/DialogContext';
 import FormError from '../../FormError';
 import { Input } from '../../Input/styles';
 import Select from '../../Select';
-import { TextArea } from '../../Textarea';
 import * as Styled from './styles';
 
 const UserForm = () => {
