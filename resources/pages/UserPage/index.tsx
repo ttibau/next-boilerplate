@@ -6,6 +6,7 @@ import { DialogContext } from '../../../components/context/DialogContext';
 import Dialog from '../../../components/Dialog';
 import UserForm from '../../../components/Forms/User';
 import UserTable from '../../../components/Tables/User';
+import ToastComponent from '../../../components/Toast';
 import * as Styled from './styles';
 
 const UserPage: NextPage = () => {
@@ -13,6 +14,7 @@ const UserPage: NextPage = () => {
   return (
     <Styled.Container>
       <Dialog />
+      <ToastComponent variant='success' />
       <Styled.Header>
         <Styled.Title>Users</Styled.Title>
         <Button
