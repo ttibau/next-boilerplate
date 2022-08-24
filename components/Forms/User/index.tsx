@@ -53,7 +53,6 @@ const UserForm = () => {
       {errors.nvarSenha && <FormError error='This field is required' />}
       <Styled.FormLabel htmlFor='macroProcess'>Empresa:</Styled.FormLabel>
       <Select
-        {...register('empresa', { required: true })}
         options={companyList}
         control={control as any}
         name='empresa'

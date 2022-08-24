@@ -9,5 +9,7 @@ const fetchAllUsers = async (): Promise<any> => {
 };
 
 export const useFetchAllUsers = () => {
-  return useQuery<IUser[], CustomError>(['users'], fetchAllUsers);
+  return useQuery<IUser[], CustomError>(['users'], fetchAllUsers, {
+    retry: false,
+  });
 };
