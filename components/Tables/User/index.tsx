@@ -85,7 +85,7 @@ const UserTable = () => {
   });
 
   if (query.isError) {
-    toast.error("This didn't work.", query.error.message);
+    toast.error("This didn't work.");
     return <ErrorMessage />;
   }
 

@@ -3,7 +3,6 @@ import * as Styled from './styles';
 
 import { faTrashAlt, faPenToSquare } from '@fortawesome/free-regular-svg-icons';
 import TooltipComponent from '../Tooltip';
-import Dialog from '../Dialog';
 import { useContext } from 'react';
 import { DialogContext } from '../context/DialogContext';
 import Button from '../Button';
