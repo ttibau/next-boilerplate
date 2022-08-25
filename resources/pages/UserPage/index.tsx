@@ -14,7 +14,6 @@ const UserPage: NextPage = () => {
   return (
     <Styled.Container>
       <Dialog />
-      <ToastComponent variant='success' />
       <Styled.Header>
         <Styled.Title>Users</Styled.Title>
         <Button

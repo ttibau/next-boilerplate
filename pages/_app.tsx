@@ -7,6 +7,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { DialogContextProivder } from '../components/context/DialogContext';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
   return (
     <ThemeProvider theme={theme}>
+      <Toaster />
       <DashboardLayout>
         <QueryClientProvider client={queryClient}>
           <DialogContextProivder>

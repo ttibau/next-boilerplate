@@ -8,7 +8,6 @@ import {
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import { DebouncedInput } from '../../DebouncedInput';
-import { rankItem } from '@tanstack/match-sorter-utils';
 import * as Styled from './styles';
 import TableActions from '../../TableActions';
 import { IUser } from '../../../types/entities/User';
@@ -16,6 +15,9 @@ import { useFetchAllUsers } from '../../../resources/pages/UserPage/api/useFetch
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useDeleteUser } from '../../../resources/pages/UserPage/api/useDeleteUser';
+import ErrorMessage from '../../ErrorContent';
+import toast from 'react-hot-toast';
+import { fuzzyFilter } from '../../../resources/helpers/fuzzyFilter';
 
 declare module '@tanstack/table-core' {
   interface FilterFns {
@@ -26,17 +28,8 @@ declare module '@tanstack/table-core' {
 const UserTable = () => {
   const [globalFilter, setGlobalFilter] = useState('');
 
-  const { isLoading, error, data } = useFetchAllUsers();
+  const query = useFetchAllUsers();
   const deleteUserMutation = useDeleteUser();
-
-  // talvez melhor jogar isso num utils
-  const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-    const itemRank = rankItem(row.getValue(columnId), value);
-    addMeta({
-      itemRank,
-    });
-    return itemRank.passed;
-  };
 
   const columns = useMemo<ColumnDef<IUser, any>[]>(
     () => [
@@ -77,7 +70,7 @@ const UserTable = () => {
 
   const table = useReactTable<IUser>({
     columns,
-    data: data ? data : [],
+    data: query.data ? query.data : [],
     filterFns: {
       fuzzy: fuzzyFilter,
     },
@@ -91,10 +84,15 @@ const UserTable = () => {
     enableGlobalFilter: true,
   });
 
+  if (query.isError) {
+    toast.error("This didn't work.", query.error.message);
+    return <ErrorMessage />;
+  }
+
   return (
     <Styled.Container>
-      {isLoading && <Skeleton width={600} count={5} />}
-      {!isLoading && (
+      {query.isLoading && <Skeleton width={600} count={5} />}
+      {!query.isLoading && !query.isError && (
         <>
           <Styled.InputContainer>
             <DebouncedInput
