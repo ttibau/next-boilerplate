@@ -20,3 +20,10 @@ export const Icon = styled(FontAwesomeIcon)`
     color: ${(props) => props.theme.colors.primary};
   }
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+`;

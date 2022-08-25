@@ -19,7 +19,6 @@ const ProcessPage: NextPage = () => {
         <Styled.Title>Process</Styled.Title>
         <Button
           onClick={() => {
-            console.log('abrindo modal');
             openDialog({
               title: 'Create Process',
               content: <ProcessForm />,

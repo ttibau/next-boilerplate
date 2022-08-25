@@ -77,7 +77,13 @@ const OrganizationalTable = () => {
       {
         accessorKey: 'actions',
         header: 'Ações',
-        cell: (info) => <TableActions editAction deleteAction row={info.row} />,
+        cell: (info) => (
+          <TableActions
+            editAction={() => console.log('asdf')}
+            deleteAction={() => console.log('asdf')}
+            row={info.row}
+          />
+        ),
       },
     ],
     []

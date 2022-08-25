@@ -1,18 +1,8 @@
 import {
-  Dashboard,
-  ShoppingCart,
-  People,
-  AttachMoney,
-  AddShoppingCart,
-  Done,
-  Business,
-  HomeWork,
-  Person,
-} from '@styled-icons/material';
-import {
   faChalkboardUser,
   faUsers,
   faDiagramProject,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
@@ -40,6 +30,11 @@ const MENU_OPTIONS: MenuOption[] = [
         url: '/organization-chart/employees',
       },
     ],
+  },
+  {
+    name: 'Usuários',
+    icon: faUser,
+    url: '/users',
   },
 ];
 

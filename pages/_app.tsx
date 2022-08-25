@@ -6,15 +6,27 @@ import { theme } from '../constants/theme';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { DialogContextProivder } from '../components/context/DialogContext';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Toaster } from 'react-hot-toast';
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
   return (
     <ThemeProvider theme={theme}>
+      <Toaster />
       <DashboardLayout>
-        <DialogContextProivder>
-          <Component {...pageProps} />
-        </DialogContextProivder>
+        <QueryClientProvider client={queryClient}>
+          <DialogContextProivder>
+            <Component {...pageProps} />
+          </DialogContextProivder>
+        </QueryClientProvider>
       </DashboardLayout>
     </ThemeProvider>
   );
